@@ -2,10 +2,10 @@
     <v-container>
         <v-layout row wrap>
             <v-flex class="postWrapper" xs12 md4 v-for="post in posts" :key="post.id">
-                <v-card flat class="mx-auto"  max-width="350px">
-                    <v-img :src="post._embedded['wp:featuredmedia']['0'].source_url">
-                        
+                <v-card  flat class="mx-auto"  max-width="350px">
+                    <v-img v-if="post._embedded['wp:featuredmedia']" :src="post._embedded['wp:featuredmedia']['0'].source_url">
                     </v-img>
+                    <v-img v-else src="https://karlsruher-pass.de/wp-content/uploads/2020/02/noim.png"></v-img>
                     <v-flex class="cardText" >
                     <h6 v-html="post.title.rendered"></h6>
                     <v-spacer />
@@ -27,7 +27,6 @@ export default {
 
         }
     },
-
 
 
     
