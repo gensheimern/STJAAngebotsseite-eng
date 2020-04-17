@@ -8,6 +8,7 @@
             class="PostSelect"
             :selectItems="[
                                     {'key':'','value': 'Bitte auswählen'},
+                                    {'key':'','value': 'Alle'},
                                     {'key':'bruchsal-de', 'value':'Bruchsal'}, 
                                     {'key':'eggenstein-leopoldshafen-de','value':'Eggenstein-Leopoldshafen'}, 
                                     {'key': 'karlsruhe-de', 'value': 'Karlsruhe'},
@@ -28,6 +29,7 @@
             class="PostSelect"
             :selectItems="[
                                     {'key':'', 'value': 'Bitte auswählen'},
+                                    {'key':'', 'value': 'Alle'},
                                     {'key': 'mobilitaet-de','value':'Mobilität'},
                                     {'key': 'freizeit-de', 'value': 'Freizeit'},
                                     {'key': 'musik-de', 'value': 'Musik'},
