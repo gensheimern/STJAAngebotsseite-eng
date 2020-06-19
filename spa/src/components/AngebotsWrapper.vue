@@ -7,17 +7,17 @@
             ref="citySelect"
             class="PostSelect"
             :selectItems="[
-                                    {'key':'','value': 'Bitte auswählen'},
-                                    {'key':'','value': 'Alle'},
-                                    {'key':'bruchsal-de', 'value':'Bruchsal'}, 
-                                    {'key':'eggenstein-leopoldshafen-de','value':'Eggenstein-Leopoldshafen'}, 
-                                    {'key': 'karlsruhe-de', 'value': 'Karlsruhe'},
-                                    {'key': 'pfinztal-de', 'value': 'Pfinztal'},
-                                    {'key': 'rheinstetten-de', 'value': 'Rheinstetten'},
-                                    {'key': 'stutensee-de', 'value': 'Stutensee'},
-                                    {'key': 'waldbronn-de', 'value': 'Waldbronn'},
-                                    {'key': 'walzbachtal-de', 'value': 'Walzbachtal'},
-                                    {'key': 'weingarten-de', 'value': 'Weingarten'}]"
+                                    {'key':'','value': 'Choose..'},
+                                    {'key':'','value': 'All'},
+                                    {'key':'bruchsal-en', 'value':'Bruchsal'},
+                                    {'key':'eggenstein-leopoldshafen-en','value':'Eggenstein-Leopoldshafen'},
+                                    {'key': 'karlsruhe-en', 'value': 'Karlsruhe'},
+                                    {'key': 'pfinztal-en', 'value': 'Pfinztal'},
+                                    {'key': 'rheinstetten-en', 'value': 'Rheinstetten'},
+                                    {'key': 'stutensee-en', 'value': 'Stutensee'},
+                                    {'key': 'waldbronn-en', 'value': 'Waldbronn'},
+                                    {'key': 'walzbachtal-en', 'value': 'Walzbachtal'},
+                                    {'key': 'weingarten-en', 'value': 'Weingarten'}]"
             :label="'Stadt'"
             :selectName="'city'"
             @getSelectedField="getSelectedField"
@@ -28,16 +28,17 @@
             ref="categorySelect"
             class="PostSelect"
             :selectItems="[
-                                    {'key':'', 'value': 'Bitte auswählen'},
-                                    {'key':'', 'value': 'Alle'},
-                                    {'key': 'mobilitaet-de','value':'Mobilität'},
-                                    {'key': 'freizeit-de', 'value': 'Freizeit'},
-                                    {'key': 'musik-de', 'value': 'Musik'},
-                                    {'key': 'sport-de', 'value': 'Sport'},
-                                    {'key': 'theater-de', 'value': 'Theater'},
-                                    {'key': 'bildung-de', 'value': 'Bildung'},
-                                    {'key': 'einkaufen-de', 'value': 'Einkaufen'},
-                                    {'key': 'essen-de', 'value': 'Essen'}]"
+                                    {'key':'', 'value': 'Choose..'},
+                                    {'key':'', 'value': 'All'},
+                                    {'key': 'mobilitaet-en','value':'Mobility'},
+                                    {'key': 'freizeit-en', 'value': 'Free Time'},
+                                    {'key': 'musik-en', 'value': 'Music'},
+                                    {'key': 'sport-en', 'value': 'Sports'},
+                                    {'key': 'theater-en', 'value': 'Theatre'},
+                                    {'key': 'bildung-en', 'value': 'Education'},
+                                    {'key': 'einkaufen-en', 'value': 'Shopping'},
+                                    {'key': 'essen-en', 'value': 'Food'},
+                                    {'key': 'information-en', 'value': 'Info'}]"
             :label="'Kategorie'"
             :selectName="'category'"
             @getSelectedField="getSelectedField"
@@ -48,11 +49,11 @@
             ref="passSelect"
             class="PostSelect"
             :selectItems="[
-                                {'key': '', 'value':'Alle'},
-                                {'key':'karlsruher-pass-de','value':'Karlsruher Pass'}, 
-                                {'key': 'karlsruher-pass-60plus-de', 'value': 'Karlsruher Pass 60Plus'},
-                                {'key': '60plus-gutscheine-de', 'value': '60Plus Gutscheine'},
-                                {'key': 'kinderpass-de', 'value': 'Karlsruher Kinderpass'}]"
+                                {'key': '', 'value':'All'},
+                                {'key':'karlsruher-pass-en','value':'Karlsruher Pass'},
+                                {'key': 'karlsruher-pass-60plus-en', 'value': 'Karlsruher Pass 60Plus'},
+                                {'key': '60plus-gutscheine-en', 'value': '60Plus Gutscheine'},
+                                {'key': 'kinderpass-en', 'value': 'Karlsruher Kinderpass'}]"
             :label="'Pass'"
             :selectName="'pass'"
             @getSelectedField="getSelectedField"
@@ -195,11 +196,13 @@ export default {
 
     async fetchPosts() {
       var url;
+      // categories_exclude=1734 entfernt alle deutschen Kategorien
+      // categories_exclude=1922 entfernt alle englischen Kategorien
       if (this.categoriesIDs.length === 0) {
-        url = `https://karlsruher-pass.de/wp-json/wp/v2/posts?per_page=9&page=${this.currentPage}&categories_exclude=1922&_embed`;
+        url = `https://karlsruher-pass.de/wp-json/wp/v2/posts?per_page=9&page=${this.currentPage}&categories_exclude=1734&_embed`;
       } else {
         var categorieString = this.categoriesIDs.join();
-        url = `https://karlsruher-pass.de/wp-json/wp/v2/posts?per_page=9&page=${this.currentPage}&categories=${categorieString}&categories_exclude=1922&_embed`;
+        url = `https://karlsruher-pass.de/wp-json/wp/v2/posts?per_page=9&page=${this.currentPage}&categories=${categorieString}&categories_exclude=1734&_embed`;
       }
       try {
         this.isLoading = true;
